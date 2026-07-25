@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TimeBoundary</string>
+    <string name="monitoring_service_title">TimeBoundary Active</string>
+    <string name="monitoring_service_desc">Monitoring app usage to help you stay mindful</string>
+    <string name="session_expired_title">Time\'s Up!</string>
+    <string name="session_expired_desc">You\'ve been on %1$s for %2$d minutes.</string>
+    <string name="btn_dismiss">Dismiss</string>
+    <string name="btn_snooze">+5 Min Snooze</string>
+    <string name="btn_close_app">Close %1$s</string>
+    <string name="grant_permission">Grant Usage Access</string>
+</resources>

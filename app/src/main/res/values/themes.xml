@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.TimeBoundary" parent="android:Theme.Material.NoActionBar">
+        <item name="android:statusBarColor">@color/dark_bg</item>
+        <item name="android:windowBackground">@color/dark_bg</item>
+    </style>
+
+    <style name="Theme.TimeBoundary.FullScreenAlert" parent="Theme.TimeBoundary">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowShowWallpaper">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+    </style>
+</resources>
