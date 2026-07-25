@@ -62,7 +62,7 @@ class FullScreenAlertActivity : ComponentActivity() {
     private lateinit var preferenceManager: PreferenceManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate()
+        super.onCreate(savedInstanceState)
         preferenceManager = PreferenceManager(applicationContext)
 
         val packageName = intent.getStringExtra(EXTRA_PACKAGE_NAME) ?: ""

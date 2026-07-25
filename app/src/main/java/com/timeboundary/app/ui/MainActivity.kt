@@ -37,6 +37,7 @@ import com.timeboundary.app.ui.theme.MintPrimary
 import com.timeboundary.app.ui.theme.SlateBorder
 import com.timeboundary.app.ui.theme.SlateCard
 import com.timeboundary.app.ui.theme.TimeBoundaryTheme
+import androidx.compose.ui.unit.dp
 import com.timeboundary.app.ui.theme.TextMuted
 import com.timeboundary.app.ui.theme.TextPrimary
 import com.timeboundary.app.utils.PermissionUtils
@@ -55,7 +56,7 @@ class MainActivity : ComponentActivity() {
     private var hasExactAlarmPermission by mutableStateOf(false)
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate()
+        super.onCreate(savedInstanceState)
         checkPermissionsAndUpdateState()
 
         setContent {
