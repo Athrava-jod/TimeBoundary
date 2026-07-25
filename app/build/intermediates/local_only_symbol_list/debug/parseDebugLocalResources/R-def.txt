@@ -1,0 +1,25 @@
+R_DEF: Internal format may change without notice
+local
+color black
+color dark_bg
+color purple_200
+color purple_500
+color purple_700
+color teal_200
+color teal_700
+color white
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+string btn_close_app
+string btn_dismiss
+string btn_snooze
+string grant_permission
+string monitoring_service_desc
+string monitoring_service_title
+string session_expired_desc
+string session_expired_title
+style Theme.TimeBoundary
+style Theme.TimeBoundary.FullScreenAlert
