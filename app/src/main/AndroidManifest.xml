@@ -24,6 +24,14 @@
     <!-- System Alert Window Permission for overlay alerts in strict mode -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
+    <!-- Declare package visibility queries to find launchable apps on Android 11+ -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+    </queries>
+
     <application
         android:name=".TimeBoundaryApp"
         android:allowBackup="true"
