@@ -122,7 +122,7 @@ fun TimeBoundaryMainApp(
         Screen.Settings
     )
 
-    if (!hasUsageAccess) {
+    if (!hasUsageAccess || !hasOverlayPermission) {
         PermissionOnboardingScreen(
             hasUsageAccess = hasUsageAccess,
             hasNotificationPermission = hasNotificationPermission,

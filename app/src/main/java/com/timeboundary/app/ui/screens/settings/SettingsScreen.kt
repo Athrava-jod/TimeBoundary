@@ -49,6 +49,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
@@ -137,6 +138,7 @@ fun SettingsScreen(
             color = SkySecondary
         ) {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                val context = LocalContext.current
                 StyleRadioButton(
                     title = "Gentle Mode",
                     description = "Delivers a high-priority notification with sound & vibration.",
@@ -148,7 +150,13 @@ fun SettingsScreen(
                     title = "Strict Mode",
                     description = "Triggers a full-screen overlay reminder over the active application.",
                     isSelected = prefs.notificationStyle == NotificationStyle.STRICT,
-                    onSelect = { viewModel.setNotificationStyle(NotificationStyle.STRICT) }
+                    onSelect = {
+                        if (com.timeboundary.app.utils.PermissionUtils.hasOverlayPermission(context)) {
+                            viewModel.setNotificationStyle(NotificationStyle.STRICT)
+                        } else {
+                            com.timeboundary.app.utils.PermissionUtils.openOverlaySettings(context)
+                        }
+                    }
                 )
             }
         }

@@ -191,12 +191,15 @@ fun PermissionOnboardingScreen(
         Spacer(modifier = Modifier.height(32.dp))
 
         // Main CTA Button
+        val isAllGranted = hasUsageAccess && hasOverlayPermission
         Button(
             onClick = {
-                if (hasUsageAccess) {
+                if (isAllGranted) {
                     onContinueClick()
-                } else {
+                } else if (!hasUsageAccess) {
                     onGrantUsageAccessClick()
+                } else {
+                    onGrantOverlayClick()
                 }
             },
             modifier = Modifier
@@ -209,8 +212,8 @@ fun PermissionOnboardingScreen(
             shape = RoundedCornerShape(16.dp)
         ) {
             Text(
-                text = if (hasUsageAccess) "Get Started" else "Grant Usage Access to Continue",
-                fontSize = 18.sp,
+                text = if (isAllGranted) "Get Started" else if (!hasUsageAccess) "Grant Usage Access to Continue" else "Grant Overlay Permission to Continue",
+                fontSize = 17.sp,
                 fontWeight = FontWeight.Bold
             )
         }
