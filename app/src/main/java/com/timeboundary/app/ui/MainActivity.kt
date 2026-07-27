@@ -54,6 +54,7 @@ class MainActivity : ComponentActivity() {
     private var hasUsageAccess by mutableStateOf(false)
     private var hasNotificationPermission by mutableStateOf(false)
     private var hasExactAlarmPermission by mutableStateOf(false)
+    private var hasOverlayPermission by mutableStateOf(false)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,9 +66,11 @@ class MainActivity : ComponentActivity() {
                     hasUsageAccess = hasUsageAccess,
                     hasNotificationPermission = hasNotificationPermission,
                     hasExactAlarmPermission = hasExactAlarmPermission,
+                    hasOverlayPermission = hasOverlayPermission,
                     onGrantUsageAccess = { PermissionUtils.openUsageAccessSettings(this) },
                     onGrantNotification = { PermissionUtils.openAppSettings(this) },
-                    onGrantExactAlarm = { PermissionUtils.openExactAlarmSettings(this) }
+                    onGrantExactAlarm = { PermissionUtils.openExactAlarmSettings(this) },
+                    onGrantOverlay = { PermissionUtils.openOverlaySettings(this) }
                 )
             }
         }
@@ -85,6 +88,7 @@ class MainActivity : ComponentActivity() {
         hasUsageAccess = PermissionUtils.hasUsageAccessPermission(this)
         hasNotificationPermission = PermissionUtils.hasNotificationPermission(this)
         hasExactAlarmPermission = PermissionUtils.hasExactAlarmPermission(this)
+        hasOverlayPermission = PermissionUtils.hasOverlayPermission(this)
     }
 
     private fun startMonitoringService() {
@@ -102,9 +106,11 @@ fun TimeBoundaryMainApp(
     hasUsageAccess: Boolean,
     hasNotificationPermission: Boolean,
     hasExactAlarmPermission: Boolean,
+    hasOverlayPermission: Boolean,
     onGrantUsageAccess: () -> Unit,
     onGrantNotification: () -> Unit,
-    onGrantExactAlarm: () -> Unit
+    onGrantExactAlarm: () -> Unit,
+    onGrantOverlay: () -> Unit
 ) {
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -121,9 +127,11 @@ fun TimeBoundaryMainApp(
             hasUsageAccess = hasUsageAccess,
             hasNotificationPermission = hasNotificationPermission,
             hasExactAlarmPermission = hasExactAlarmPermission,
+            hasOverlayPermission = hasOverlayPermission,
             onGrantUsageAccessClick = onGrantUsageAccess,
             onGrantNotificationClick = onGrantNotification,
             onGrantAlarmClick = onGrantExactAlarm,
+            onGrantOverlayClick = onGrantOverlay,
             onContinueClick = { }
         )
     } else {

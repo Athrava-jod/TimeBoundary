@@ -1,0 +1,23 @@
+# Gradle cache and build outputs
+.gradle/
+build/
+app/build/
+
+# IDE files
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Local configuration files
+local.properties
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Log and temp files
+*.log
+.temp/
+temp/

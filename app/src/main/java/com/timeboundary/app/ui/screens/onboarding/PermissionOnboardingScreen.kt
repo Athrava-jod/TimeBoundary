@@ -56,9 +56,11 @@ fun PermissionOnboardingScreen(
     hasUsageAccess: Boolean,
     hasNotificationPermission: Boolean,
     hasExactAlarmPermission: Boolean,
+    hasOverlayPermission: Boolean,
     onGrantUsageAccessClick: () -> Unit,
     onGrantNotificationClick: () -> Unit,
     onGrantAlarmClick: () -> Unit,
+    onGrantOverlayClick: () -> Unit,
     onContinueClick: () -> Unit
 ) {
     val scrollState = rememberScrollState()
@@ -145,6 +147,18 @@ fun PermissionOnboardingScreen(
                 icon = Icons.Default.Alarm,
                 isGranted = hasExactAlarmPermission,
                 onGrantClick = onGrantAlarmClick,
+                isRequired = false
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Permission Card 4: Display Over Other Apps
+            PermissionStatusCard(
+                title = "Display Over Other Apps",
+                description = "Required to display the full-screen alert when a monitored app's limit is exceeded.",
+                icon = Icons.Default.Shield,
+                isGranted = hasOverlayPermission,
+                onGrantClick = onGrantOverlayClick,
                 isRequired = false
             )
 

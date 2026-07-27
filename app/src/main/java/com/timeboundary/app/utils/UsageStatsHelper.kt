@@ -13,9 +13,20 @@ object UsageStatsHelper {
                 ?: return null
 
         val endTime = System.currentTimeMillis()
-        // Check events over the last 15 seconds to ensure capture of recent transitions
-        val startTime = endTime - 15000L
 
+        // 1. Try a short 15-second window first (common case during transitions)
+        val shortPackage = getForegroundFromEvents(usageStatsManager, endTime - 15000L, endTime)
+        if (shortPackage != null) return shortPackage
+
+        // 2. Fallback to a wider 2-hour window if no recent events occurred (user is actively using the same app)
+        return getForegroundFromEvents(usageStatsManager, endTime - 2 * 3600000L, endTime)
+    }
+
+    private fun getForegroundFromEvents(
+        usageStatsManager: UsageStatsManager,
+        startTime: Long,
+        endTime: Long
+    ): String? {
         val usageEvents = usageStatsManager.queryEvents(startTime, endTime) ?: return null
         val event = UsageEvents.Event()
         var currentForegroundPackage: String? = null

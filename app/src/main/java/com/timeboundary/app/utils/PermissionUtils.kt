@@ -89,4 +89,26 @@ object PermissionUtils {
         }
         context.startActivity(intent)
     }
+
+    fun hasOverlayPermission(context: Context): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            Settings.canDrawOverlays(context)
+        } else {
+            true
+        }
+    }
+
+    fun openOverlaySettings(context: Context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            try {
+                val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION).apply {
+                    data = Uri.parse("package:${context.packageName}")
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                }
+                context.startActivity(intent)
+            } catch (e: Exception) {
+                openAppSettings(context)
+            }
+        }
+    }
 }
